@@ -1,11 +1,15 @@
 from app import app
 from flask import render_template, request, jsonify
 import pickle
+import os
 
 # Load the trained model and vectorizers
-model = pickle.load(open('/workspaces/ticket_priority_resolution_time_predictor/myflaskproject/app/pkl/grid_search_log.pkl', 'rb'))
-count_vect = pickle.load(open('/workspaces/ticket_priority_resolution_time_predictor/myflaskproject/app/pkl/count_vect.pkl', 'rb'))
-tfidf_transformer = pickle.load(open('/workspaces/ticket_priority_resolution_time_predictor/myflaskproject/app/pkl/tfidf.pkl', 'rb'))
+
+base_path = os.path.dirname(__file__)
+
+model = pickle.load(open(os.path.join(base_path, 'pkl', 'grid_search_log.pkl'), 'rb'))
+count_vect = pickle.load(open(os.path.join(base_path, 'pkl', 'count_vect.pkl'), 'rb'))
+tfidf_transformer = pickle.load(open(os.path.join(base_path, 'pkl', 'tfidf.pkl'), 'rb'))
 
 @app.route('/')
 def home():
