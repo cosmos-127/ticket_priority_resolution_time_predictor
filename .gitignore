@@ -19,7 +19,7 @@ Thumbs.db
 
 # Flask-specific
 instance/
-*.pkl
+
 
 # Build output
 dist/
