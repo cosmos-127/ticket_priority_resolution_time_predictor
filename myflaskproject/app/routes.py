@@ -5,9 +5,9 @@ import numpy as np
 app = Flask(__name__)
 
 # Load the trained model and vectorizers
-model = pickle.load(open('/workspaces/ticket_priority_resolution_time_predictor/myflaskproject/app/model.pkl', 'rb'))
-count_vect = pickle.load(open('/workspaces/ticket_priority_resolution_time_predictor/myflaskproject/app/count_vect.pkl', 'rb'))
-tfidf_transformer = pickle.load(open('/workspaces/ticket_priority_resolution_time_predictor/myflaskproject/app/tfidf_transformer.pkl', 'rb'))
+model = pickle.load(open('/workspaces/ticket_priority_resolution_time_predictor/myflaskproject/app/pkl/grid_search_log.pkl', 'rb'))
+count_vect = pickle.load(open('/workspaces/ticket_priority_resolution_time_predictor/myflaskproject/app/pkl/count_vect.pkl', 'rb'))
+tfidf_transformer = pickle.load(open('/workspaces/ticket_priority_resolution_time_predictor/myflaskproject/app/pkl/tfidf.pkl', 'rb'))
 
 @app.route('/')
 def home():
