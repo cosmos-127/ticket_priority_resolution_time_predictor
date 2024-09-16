@@ -1,8 +1,6 @@
-from flask import Flask, render_template, request, jsonify
+from app import app
+from flask import render_template, request, jsonify
 import pickle
-import numpy as np
-
-app = Flask(__name__)
 
 # Load the trained model and vectorizers
 model = pickle.load(open('/workspaces/ticket_priority_resolution_time_predictor/myflaskproject/app/pkl/grid_search_log.pkl', 'rb'))
@@ -38,6 +36,3 @@ def predict():
         
         # Return the result to the user
         return jsonify({'prediction': answer})
-
-if __name__ == '__main__':
-    app.run(debug=True)
