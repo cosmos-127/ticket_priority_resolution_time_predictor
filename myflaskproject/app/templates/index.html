@@ -5,47 +5,147 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
-      @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+      @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap");
     </style>
     <link rel="stylesheet" href="../static/styles.css" />
-    <title>Ticket Priority and Resolution Time Predictor</title>
+    <title>Predictor</title>
   </head>
   <body
     class="bg-gradient-to-r from-pink-500 to-orange-500 min-h-screen flex items-center justify-center"
   >
-    <div
-      class="bg-white shadow-2xl rounded-3xl pt-12 pb-6 px-10 max-w-lg w-full my-6"
-    >
-      <h1 class="text-2xl text-pink-600 font-bold mb-6 text-center">
-        Ticket Priority and Resolution Time Predictor
+    <div class="bg-white shadow-2xl rounded-2xl pt-12 pb-8 px-8 w-2/3 my-6">
+      <h1 class="text-3xl text-pink-600 font-bold mb-5 text-center">
+        Financial Ticket Priority and Department Classification
       </h1>
 
       <form action="/predict" method="POST" class="space-y-4">
-        <!-- Ticket Description Textarea -->
-        <div>
-            <label
-                for="ticket_description"
-                class="block text-sm font-medium text-gray-700"
-                >Ticket Description:</label
-            >
-            <textarea
-                id="ticket_description"
-                name="ticket_description"
-                rows="4"
+        <div class="flex flex-row">
+          <div class="flex-1 px-8 py-2 border-gray-400 border-r">
+            <!-- Contact Type Dropdown -->
+            <div>
+              <label
+                for="contact_type"
+                class="block text-sm font-medium text-gray-700 py-2"
+              >
+                Contact Type:
+              </label>
+              <select
+                id="contact_type"
+                name="contact_type"
                 class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+              >
+                <option value="phone">Phone</option>
+                <option value="email">Email</option>
+                <option value="self_service">Self-service</option>
+                <option value="direct_opening">Direct opening</option>
+                <option value="ivr">IVR</option>
+              </select>
+            </div>
+
+            <!-- Category Input -->
+            <div>
+              <label
+                for="category"
+                class="block text-sm font-medium text-gray-700 py-2"
+              >
+                Category (0 - 58):
+              </label>
+              <input
+                type="number"
+                id="category"
+                name="category"
+                min="0"
+                max="58"
+                step="0.1"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                placeholder="Enter a category value between 0 and 58"
+              />
+            </div>
+            <!-- Subcategory Input -->
+            <div>
+              <label
+                for="subcategory"
+                class="block text-sm font-medium text-gray-700 py-2"
+              >
+                Subcategory (0 - 254):
+              </label>
+              <input
+                type="number"
+                id="subcategory"
+                name="subcategory"
+                min="0"
+                max="254"
+                step="0.1"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+                placeholder="Enter a subcategory value between 0 and 254"
+              />
+            </div>
+            <!-- Impact Dropdown -->
+            <div>
+              <label
+                for="impact"
+                class="block text-sm font-medium text-gray-700 py-2"
+              >
+                Impact:
+              </label>
+              <select
+                id="impact"
+                name="impact"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+              >
+                <option value="low">Low</option>
+                <option value="medium">Medium</option>
+                <option value="high">High</option>
+              </select>
+            </div>
+          </div>
+          <div class="flex-1 px-8 py-2">
+            <!-- Notify Dropdown -->
+            <div>
+              <label
+                for="notify"
+                class="block text-sm font-medium text-gray-700 py-2"
+              >
+                Notify:
+              </label>
+              <select
+                id="notify"
+                name="notify"
+                class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+              >
+                <option value="yes">Yes</option>
+                <option value="no">No</option>
+              </select>
+            </div>
+            <!-- Ticket Description Textarea -->
+          <div>
+            <label
+              for="ticket_description"
+              class="block text-sm font-medium text-gray-700 py-2"
+            >
+              Ticket Description:
+            </label>
+            <textarea
+              id="ticket_description"
+              name="ticket_description"
+              rows="6"
+              class="mt-1 block w-full p-2 border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 text-sm"
+              placeholder="Enter the description of the issue..."
             ></textarea>
+          </div>
+          </div>
+          
         </div>
-    
+
         <!-- Submit Button -->
         <div class="text-center mt-6">
-            <input
-                type="submit"
-                value="Predict"
-                class="inline-flex justify-center py-3 px-5 text-md font-medium rounded-3xl text-white bg-gradient-to-r from-teal-400 to-blue-500 shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105"
-            />
+          <input
+            type="submit"
+            value="Predict"
+            class="inline-flex justify-center py-3 px-5 text-md font-medium rounded-3xl text-white bg-gradient-to-r from-teal-400 to-blue-500 shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105"
+          />
         </div>
-    </form>
-    
+      </form>
     </div>
   </body>
 </html>

@@ -8,17 +8,37 @@
       @import url("https://fonts.googleapis.com/css2?family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
     </style>
     <link rel="stylesheet" href="../static/styles.css" />
-    <title>Ticket Priority and Resolution Time Predictor</title>
+    <title>Prediction</title>
   </head>
   <body
     class="bg-gradient-to-r from-pink-500 to-orange-500 min-h-screen flex items-center justify-center"
   >
     <div
-      class="bg-white shadow-2xl rounded-3xl pt-12 pb-6 px-10 max-w-lg w-full my-6"
+      class="bg-white shadow-2xl rounded-3xl pt-10 pb-8 px-6 max-w-2xl w-full my-6"
     >
       <h1 class="text-2xl text-pink-600 font-bold mb-6 text-center">
         Prediction
       </h1>
+      <div class="flex flex-row">
+        <p class="px-5 py-1 border-gray-400 border-r text-sm">
+          Your ticket belongs to the Department: <br /><strong
+            >{{ prediction1 }}</strong
+          >
+        </p>
+
+        <p class="px-5 py-1 text-sm">
+          Your ticket belongs to the Priority: <br /><strong
+            >{{ prediction2 }}</strong
+          >
+        </p>
+      </div>
+      <center>
+        <a
+          href="/"
+          class="inline-flex justify-center py-2 px-6 mt-10 text-md font-medium rounded-3xl text-white bg-gradient-to-r from-teal-400 to-blue-500 shadow-lg hover:shadow-xl transition-all duration-300 ease-in-out transform hover:scale-105"
+          >Go back to form</a
+        >
+      </center>
     </div>
   </body>
 </html>
