@@ -2,4 +2,5 @@ from flask import Flask
 
 app = Flask(__name__)
 
-from app import routes  # Import routes after app is initialized
+# Import routes after initializing the app
+from app import routes
