@@ -58,9 +58,9 @@ def predict():
         topic_mapping1 = {
             0: 'Bank Account services',
             1: 'Credit card or prepaid card',
-            2: 'Others',
-            3: 'Theft/Dispute Reporting',
-            4: 'Mortgage/Loan'
+            2: 'Mortgage/Loan',
+            3: 'Others',
+            4: 'Theft/Dispute Reporting'
         }
 
         topic_mapping2 = {

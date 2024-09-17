@@ -24,3 +24,5 @@ instance/
 # Build output
 dist/
 build/
+*.tar
+
