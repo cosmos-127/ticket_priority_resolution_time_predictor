@@ -10,7 +10,7 @@ base_path = os.path.dirname(__file__)
 description_model = pickle.load(open(os.path.join(base_path, 'pkl', 'description_model.pkl'), 'rb'))
 count_vect = pickle.load(open(os.path.join(base_path, 'pkl', 'count_vect.pkl'), 'rb'))
 tfidf_transformer = pickle.load(open(os.path.join(base_path, 'pkl', 'tfidf.pkl'), 'rb'))
-priority_model = pickle.load(open(os.path.join(base_path, 'pkl', 'priority_model_v3.pkl'), 'rb'))
+priority_model = pickle.load(open(os.path.join(base_path, 'pkl', 'final_priority_model.pkl'), 'rb'))
 
 @app.route('/')
 def home():
@@ -67,7 +67,8 @@ def predict():
             0: 'Critical',
             1: 'High',
             2: 'Moderate',
-            3: 'Low'
+            3: 'Low',
+            4: 'Unknown'
         }
         
         answer1 = topic_mapping1[prediction1[0]]
