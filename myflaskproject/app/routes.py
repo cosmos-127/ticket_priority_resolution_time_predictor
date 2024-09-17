@@ -5,13 +5,12 @@ from sklearn.preprocessing import StandardScaler
 import os
 
 # Load the trained description_model and vectorizers
-
 base_path = os.path.dirname(__file__)
 
 description_model = pickle.load(open(os.path.join(base_path, 'pkl', 'description_model.pkl'), 'rb'))
 count_vect = pickle.load(open(os.path.join(base_path, 'pkl', 'count_vect.pkl'), 'rb'))
 tfidf_transformer = pickle.load(open(os.path.join(base_path, 'pkl', 'tfidf.pkl'), 'rb'))
-priority_model = pickle.load(open(os.path.join(base_path, 'pkl', 'priority_model.pkl'), 'rb'))
+priority_model = pickle.load(open(os.path.join(base_path, 'pkl', 'priority_model_v3.pkl'), 'rb'))
 
 @app.route('/')
 def home():
@@ -48,9 +47,6 @@ def predict():
         sc = StandardScaler()
         input_vector = sc.fit_transform(input_vector)
         
-
-      
-
         # Prediction
     
         # Make prediction using the description_model
@@ -59,7 +55,6 @@ def predict():
         # Make prediction using the priority Model
         prediction2 = priority_model.predict(input_vector)
 
-
         topic_mapping1 = {
             0: 'Bank Account services',
             1: 'Credit card or prepaid card',
@@ -67,17 +62,16 @@ def predict():
             3: 'Theft/Dispute Reporting',
             4: 'Mortgage/Loan'
         }
+
         topic_mapping2 = {
             0: 'Critical',
             1: 'High',
             2: 'Moderate',
-            3: 'Low',
-            4: 'Low'
+            3: 'Low'
         }
         
         answer1 = topic_mapping1[prediction1[0]]
-        answer2 = topic_mapping2[prediction2[0]]
-        
+        answer2 = topic_mapping2[prediction2[0]]  
      
      # Redirect to the new page with prediction data
         return render_template('index2.html', prediction1=answer1,prediction2=answer2)
