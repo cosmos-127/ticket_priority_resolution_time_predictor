@@ -36,16 +36,15 @@ def predict():
         # 2, For Priority
 
         # contact type encoding mapping
-        map1= {'direct_opening': 0, 'email': 1, 'ivr': 2, 'phone': 3, 'self_service': 4}
+        map1= {'direct_opening': 0.0, 'email': 1.0, 'ivr': 2.0, 'phone': 3.0, 'self_service': 4.0}
         # impact encoding mapping
-        map2={'high': 0, 'medium': 1, 'low': 2}
+        map2={'high': 0.0, 'medium': 1.0, 'low': 2.0}
         # notify encoding mapping
-        map3 = {'no': 0, 'yes': 1}
+        map3 = {'no': 0.0, 'yes': 1.0}
+
+        #print(map1[contact_type],category,subcategory,map2[impact],map3[notify])
 
         input_vector=[[map1[contact_type],category,subcategory,map2[impact],map3[notify]]]
-
-        sc = StandardScaler()
-        input_vector = sc.fit_transform(input_vector)
         
         # Prediction
     
@@ -64,15 +63,15 @@ def predict():
         }
 
         topic_mapping2 = {
-            0: 'Critical',
-            1: 'High',
-            2: 'Moderate',
-            3: 'Low',
-            4: 'Unknown'
+            0.0: 'Critical',
+            1.0: 'High',
+            2.0: 'Moderate',
+            3.0: 'Low',
+            4.0: 'Unknown'
         }
         
         answer1 = topic_mapping1[prediction1[0]]
         answer2 = topic_mapping2[prediction2[0]]  
-     
+
      # Redirect to the new page with prediction data
         return render_template('index2.html', prediction1=answer1,prediction2=answer2)
