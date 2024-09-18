@@ -5,7 +5,8 @@
 
 This project is a **web application** that uses machine learning models to predict the **Department** and **Priority** for finance-related incidents based on their descriptions. The app is built with **Flask** for the backend, **Tailwind CSS** for the frontend, and includes several machine learning models for incident classification. The application is containerized using **Docker** and deployed for remote access via **Railway**.
 
-![Screenshot of Web App](images/Screenshot (1).png)
+![Screenshot of Web App](images/home_page.png)
+![Screenshot of Web App](images/prediction_page.png)
 
 ## Features
 
